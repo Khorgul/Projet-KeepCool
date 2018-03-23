@@ -10,7 +10,9 @@ public class ListExercice {
 
     private ArrayList<Exercice> list;
 
-    private ListExercice() {}
+    public ListExercice() {
+        list=new ArrayList<>();
+    }
 
     public Exercice get(int position) {
         return list.get(position);
