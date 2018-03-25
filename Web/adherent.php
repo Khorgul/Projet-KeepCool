@@ -7,7 +7,7 @@ session_start();
 	mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
 	?>
 <!DOCTYPE html>
-<html><a href="Exercice.html">Gestion de l'application</a>
+<html>
     <head>
         <meta charset="utf-8" />
 		<link rel="stylesheet" href="style.css" />
@@ -16,19 +16,50 @@ session_start();
 
     <body>
     <header>
-	<a href="adherent.html">Adhérent</a>
-	<a href="machine.html">Machine</a>
-	<a href="Exercice.html">Gestion de l'application</a>
 	</header>
-	</br>
-	</br>
-	</br>
-	 
+</br></br></br></br></br></br></br></br></br></br>
 	<?php
+		$sql="SELECT adherent_id, adherent_nom FROM `adherent`";
+		$req=mysqli_query($link,$sql);
+	
+	if(!isset($_POST['adherent'])){?>
+	<form name="adherent" method="post" action="adherent.php">
+	<label for="adherent">Créer une playlist pour :</label>
+		<select name ="adherent" id="adherent">
+			<option name ="adherent" value=""></option>
+			<?php
+			while ($data=mysqli_fetch_assoc($req)){
+			?>
+				<option name ="adherent" value="<?php echo $data['adherent_id']?>">Id : <?php echo $data['adherent_id']?> Nom : <?php echo $data['adherent_nom']?></option>
+			<?php
+			}
+			?>
+			
+		</select>
+		 <label for="pass">intitulé :</label>
+       <input type="text" name="nom" id="nom" value=""/>
+		<input type="submit" value="Ajouter playlist" />
+	</form>
+	<?php
+	}
+	?>
+	
+	
+	
+	<?php
+	if(isset($_POST['adherent'])){
+		$nom= $_POST['nom'];
+		$id = $_POST['adherent'];
+		$sql="INSERT INTO `playlist` (`playlist_id`, `playlist_nom`, `exercice_id`, `adherent_id`) 
+		VALUES (NULL, '$nom', '', '$id')";
+		$req=mysqli_query($link,$sql);
+
+	
 		$sql="SELECT gm_id, gm_nom FROM `groupe_musculaire`";
 		$req=mysqli_query($link,$sql);
 	?>
 	<form name="groupe" method="post" action="adherent.php">
+	<label for="groupe">Groupe musculaire :</label>
 		<select name ="groupe" id="groupe">
 			<option name ="groupe" value=""></option>
 			<?php
@@ -41,6 +72,11 @@ session_start();
 		</select>
 		<p><input type="submit" value="Voir les exercices" /></p>
 	</form>
+	<?php
+	}
+	?>
+	
+	
 	
 	<form name="exercice" method="post" action="adherent.php">
 		<?php
@@ -49,6 +85,7 @@ session_start();
 			$sql="SELECT listeexercice_id, listeexercice_nom FROM `listeexercice` WHERE listeexercice_gm = '$groupe'";
 			$req=mysqli_query($link,$sql);
 		?>
+		<label for="groupe">Exercice :</label>
 		<select name ="exercice" id="exercice">
 		<?php
 		while ($data2=mysqli_fetch_assoc($req)){
@@ -68,10 +105,13 @@ session_start();
 	<?php
 		if(isset($_POST['exercice'])){
 			$exercice = $_POST['exercice'];
-			$sql="SELECT exercice_id, exercice_nom FROM `exercice` WHERE exercice_id = '$exercice'";
+			$sql ="INSERT INTO `exercice` (`exercice_id`, `listeexercice_id`, `playlist_id`) 
+			VALUES (NULL, '$exercice', '1')";
+			$req =mysqli_query($link,$sql);
+			$sql="SELECT listeexercice_id, listeexercice_nom FROM `listeexercice` WHERE listeexercice_id = '$exercice'";
 			$req=mysqli_query($link,$sql);
 			$data2=mysqli_fetch_assoc($req);
-			echo $data2['exercice_nom'] . " : ";
+			echo $data2['listeexercice_nom'] . " : ";
 		
 			?>
 			
@@ -116,19 +156,17 @@ session_start();
 		?>
 		
 		<?php
-		$serie =  $_SESSION['serie'];
-		for ($i=1; $i<=$serie;$i++) 
-		{
-		if (isset($_POST['rep'.$i])) {
 		
-		
-		
-			echo $_POST['rep'.$i];
-			$_POST['poids'.$i]
-			"INSERT INTO exercice () VALUES "
-	
-		}}
-		
+		if (isset($_POST['rep1'])) {
+			$serie =  $_SESSION['serie'];echo $serie;
+			for ($i=1; $i<=$serie;$i++) {
+			$seri = $_POST['rep'.$i];
+			$poids = $_POST['poids'.$i];
+			$sql = "INSERT INTO `serie` (`serie_id`,`serie_poids`,`serie_nb`,`serie_rang`, `exercice_id`)
+			VALUES (NULL, $seri, $poids, $i, 1);";
+			$req=mysqli_query($link,$sql);
+		}
+		}
 		?>
 		
 	
