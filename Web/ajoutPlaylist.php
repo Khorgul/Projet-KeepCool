@@ -7,6 +7,7 @@ mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
 $sql="SELECT gm_id, gm_nom FROM `groupe_musculaire`";
 $req=mysqli_query($link,$sql);
 ?>
+<p>Ajouter un exercice</p> 
 <table border ="1">
 		<tr>
 			<td align="center">
@@ -90,7 +91,6 @@ $req=mysqli_query($link,$sql);
 		</tr>
 	</table>	
 	
-	
 	<?php
 if (isset($_POST['rep1'])) {
 			$exercice = $_SESSION['exercice'];
@@ -122,3 +122,4 @@ if (isset($_POST['rep1'])) {
 		}
 
 ?>
+	<a href="playlist.php">Sortie</a>

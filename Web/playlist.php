@@ -12,7 +12,6 @@ $req=mysqli_query($link,$sql);
 	<form name="adherent" method="post" action="playlist.php">
 		<label for="adherent">Adhérent : </label>
 			<select name ="adherent" id="adherent">
-				<option name ="adherent" value=""></option>
 				<?php
 				while ($data=mysqli_fetch_assoc($req)){
 				?>
@@ -39,7 +38,7 @@ if(isset($_POST['adherent'])){
 	
 <?php
 $id = $_POST['adherent'];
-$sql = "SELECT `playlist_id`,`playlist_nom` FROM `playlist` WHERE `adherent_id`= $id";
+$sql = "SELECT `playlist_id`,`playlist_nom`,`exercice_id` FROM `playlist` WHERE `adherent_id`= $id";
 $req=mysqli_query($link,$sql);
 while ($data=mysqli_fetch_assoc($req))
 {
@@ -47,10 +46,19 @@ while ($data=mysqli_fetch_assoc($req))
 	<tr>
 		<td align="center"><?php echo $data['playlist_id'] ?></td>
 		<td align="center"><?php echo $data['playlist_nom'] ?></td>
-		<td align="center"></td>
-		<td align="center">Voir</td>
-		<td align="center">Modifier</td>
-		<td align="center" >Supprimer</td>
+		<td align="center"><?php 
+		$ex = $data['exercice_id'];
+		$ln = strlen($ex);
+		$nb = 0;
+		for($i=0; $i<$ln;$i++){
+			if($ex[$i]=="/"){
+				$nb = $nb +1;
+			}
+		}	
+		echo $nb;?></td>
+	<td align="center"><form action='voir.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/voir.png"></form>
+	<td align="center"><form action='modifier.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/modifier.jpg"></form>
+	<td align="center"><form action='supprimer.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/supprimer.jpg"></form>
 		
 	</tr>
 <?php
@@ -61,38 +69,39 @@ while ($data=mysqli_fetch_assoc($req))
 
 
 	</br></br>Ajouter une playlist : </br></br><br>
-<form name="nomPlay"  method="post" action="playlist.php">
+<form name="nomPlay"  method="post" action="ajoutExercice.php">
 	<label for="pass">intitulé :</label>
 	<input type="text" name="nom" id="nom" value=""/>
 	<input type="submit" value="Créer la playlist" /></br>
 </form>	
-	<form name="ajoutEx"  method="post" action="ajoutPlaylist.php">
-		<label for="pass">Exercice </label>
-		<input name="AjoutExercice" type="submit" value="+" /></br>
-	</form>
+	
 	
 	<?php	
 	if(isset($_POST['nom'])){
-		echo $_SESSION['adherent'];
-		$id = $_SESSION['adherent'];
 		$nom= $_POST['nom'];
-		echo $nom;
+		echo "Playlist ' $nom ' créée";
+		//echo $_SESSION['adherent'];
+		$id = $_SESSION['adherent'];
+		
+		//echo $nom;
 		$sql="INSERT INTO `playlist` (`playlist_id`, `playlist_nom`, `exercice_id`, `adherent_id`) 
 		VALUES (NULL, '$nom', '', '$id')";
 		$req=mysqli_query($link,$sql);
 		$last_id = mysqli_insert_id($link);
-		echo "<br/>Last Id = ".$last_id;
+		//echo "<br/>Last Id = ".$last_id;
 		$_SESSION['last_idP']=$last_id;
 		
 		$sqlPlaylist="SELECT `playlist_id` FROM `adherent` WHERE `adherent_id` = $id";
 		$reqPlaylist = mysqli_query($link,$sqlPlaylist);
 		$dataPlaylist=mysqli_fetch_assoc($reqPlaylist);
-		echo $dataPlaylist['playlist_id'];
+		//echo $dataPlaylist['playlist_id'];
 		$dataPlaylist['playlist_id'] = $dataPlaylist['playlist_id'] . "/" . $last_id;
-		echo $dataPlaylist['playlist_id'];
+		//echo $dataPlaylist['playlist_id'];
 		$playlist_id = $dataPlaylist['playlist_id'];	
 		$sqlPlaylist="UPDATE `adherent` SET `playlist_id` = '$playlist_id' WHERE `adherent_id` = $id";
 		$reqPlaylist = mysqli_query($link,$sqlPlaylist);
 	}	
 ?>
+
+
 		
