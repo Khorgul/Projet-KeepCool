@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ExerciceActivity" android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".SerieActivity" android:parentActivityName=".ExerciceActivity"></activity>
     </application>
 
 </manifest>
