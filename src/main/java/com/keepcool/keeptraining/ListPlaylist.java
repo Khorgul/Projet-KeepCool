@@ -10,7 +10,9 @@ public class ListPlaylist {
 
     private ArrayList<Playlist> list;
 
-    private ListPlaylist() {}
+    private ListPlaylist() {
+        list=new ArrayList<>();
+    }
 
     public Playlist get(int position) {
         return list.get(position);
@@ -21,6 +23,9 @@ public class ListPlaylist {
     }
 
     public void build() {
+        list.add(new Playlist(1, "test", R.drawable.ic_launcher_background));
+        list.add(new Playlist(1, "test", R.drawable.ic_launcher_background));
+        list.add(new Playlist(1, "test", R.drawable.ic_launcher_background));
     }
 
     /** Holder */
