@@ -1,7 +1,6 @@
 package com.keepcool.keeptraining;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +63,7 @@ public class PlaylistAdapter extends BaseAdapter {
         tvNom.setText(mListP.get(position).getNom());
         image.setImageResource(mListP.get(position).getImg());
 
-        tvNom.setTag(position);
+        layoutItem.setTag(position);
 
         layoutItem.setOnClickListener(new View.OnClickListener() {
 

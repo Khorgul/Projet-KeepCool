@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by ff600900@iutnice.unice.fr on 23/03/18.
  */
 
-class SerieActivity extends AppCompatActivity {
+public class SerieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
