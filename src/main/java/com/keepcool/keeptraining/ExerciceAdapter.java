@@ -61,9 +61,8 @@ public class ExerciceAdapter extends BaseAdapter {
 
         //(3) : Renseignement des valeurs
         tvNom.setText(mListE.get(position).getNom());
-        image.setImageResource(mListE.get(position).getImg());
 
-        tvNom.setTag(position);
+        layoutItem.setTag(position);
 
         layoutItem.setOnClickListener(new View.OnClickListener() {
 
@@ -84,7 +83,7 @@ public class ExerciceAdapter extends BaseAdapter {
     public void addListener(ExerciceAdapter.ExerciceAdapterListener aListener) {
         mListListener.add(aListener);
     }
-    private void sendListener(Playlist item, int position) {
+    private void sendListener(Exercice item, int position) {
         for(int i = mListListener.size()-1; i >= 0; i--) {
             mListListener.get(i).onClickNom(item, position);
         }
@@ -94,7 +93,7 @@ public class ExerciceAdapter extends BaseAdapter {
     // Interface pour écouter les évènements sur le nom du diplome
 
     public interface ExerciceAdapterListener {
-        public void onClickNom(Playlist item, int position);
+        public void onClickNom(Exercice item, int position);
     }
 
 
