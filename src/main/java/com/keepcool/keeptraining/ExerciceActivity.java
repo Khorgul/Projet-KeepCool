@@ -9,7 +9,7 @@ import android.widget.ListView;
  * Created by ff600900@iutnice.unice.fr on 23/03/18.
  */
 
-class ExerciceActivity extends AppCompatActivity implements ExerciceAdapter.ExerciceAdapterListener{
+public class ExerciceActivity extends AppCompatActivity implements ExerciceAdapter.ExerciceAdapterListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ class ExerciceActivity extends AppCompatActivity implements ExerciceAdapter.Exer
     }
 
     @Override
-    public void onClickNom(Playlist item, int position) {
-        Intent intent = new Intent(this.getApplicationContext(), SerieActivity.class);
+    public void onClickNom(Exercice item, int position) {
+
     }
 }
