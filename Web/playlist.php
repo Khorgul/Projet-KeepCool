@@ -9,6 +9,8 @@ $sql="SELECT adherent_id, adherent_nom FROM `adherent`";
 $req=mysqli_query($link,$sql);
 	
 ?>
+<html>
+<body style ="margin-top : 10%; text-align: center; font-size : 18px;">
 	<form name="adherent" method="post" action="playlist.php">
 		<label for="adherent">Adhérent : </label>
 			<select name ="adherent" id="adherent">
@@ -29,7 +31,9 @@ $req=mysqli_query($link,$sql);
 if(isset($_POST['adherent'])){
 	$_SESSION['adherent']=$_POST['adherent'];
 	?>
-<table width="450" height="120" border="1">
+	
+	
+<table style="margin:auto; font-size : 18px;" width="450" height="100" border="1">
 	<tr>
 		<td align="center">Playlist</td>
 		<td align="center">Nom</td>
@@ -57,7 +61,7 @@ while ($data=mysqli_fetch_assoc($req))
 		}	
 		echo $nb;?></td>
 	<td align="center"><form action='voir.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/voir.png"></form>
-	<td align="center"><form action='modifier.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/modifier.jpg"></form>
+	<td align="center"><form action='modifPlaylist.php' method='post'><input type="hidden" type='submit' name="modif" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/modifier.jpg"></form>
 	<td align="center"><form action='supprimer.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/supprimer.jpg"></form>
 		
 	</tr>
@@ -70,7 +74,7 @@ while ($data=mysqli_fetch_assoc($req))
 
 	</br></br>Ajouter une playlist : </br></br><br>
 <form name="nomPlay"  method="post" action="ajoutExercice.php">
-	<label for="pass">intitulé :</label>
+	<label for="pass">Intitulé :</label>
 	<input type="text" name="nom" id="nom" value=""/>
 	<input type="submit" value="Créer la playlist" /></br>
 </form>	
@@ -104,4 +108,5 @@ while ($data=mysqli_fetch_assoc($req))
 ?>
 
 
-		
+	</body>
+</html>	

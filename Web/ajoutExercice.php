@@ -2,7 +2,9 @@
 session_start();
 ?>
 <?php	
-
+if(isset($_SESSION['idmodif'])){
+$idmodif = $_SESSION['idmodif'];
+}
 $link=mysqli_connect("localhost","yoni","yoniphp1")or die("la connexion n'est pas passé");
 mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
 

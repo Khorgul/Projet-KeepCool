@@ -5,7 +5,8 @@ session_start();
 $link=mysqli_connect("localhost","yoni","yoniphp1")or die("la connexion n'est pas passé");
 mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
 
-$id=$_POST['visu'];
+$idmodif=$_POST['modif'];
+$_SESSION['idmodif']=$idmodif;
 
 ?>
 
@@ -13,7 +14,7 @@ $id=$_POST['visu'];
 	
 	<?php
 
-$sql = "SELECT exercice_id FROM playlist where playlist_id = $id";
+$sql = "SELECT exercice_id FROM playlist where playlist_id = $idmodif";
 $req=mysqli_query($link,$sql);
 $data=mysqli_fetch_assoc($req);
 $ex= $data['exercice_id'];
@@ -41,7 +42,7 @@ $maxSerie = max($tab);
 
 ?>
 
-<table style ="margin : auto; margin-top:10%; font-size: 18px; " height ="150" width="550" border ="1">
+<table height ="100" width="550" border ="1">
 	<tr>
 		<td align="center" ROWSPAN=2>Exercice</td>
 		<td align="center" ROWSPAN=2>Nb de série</td>
@@ -120,3 +121,7 @@ $reqDetail=mysqli_query($link,$detail);
 
 
 </table>
+	<form action='ajoutExercice.php' method='post'>
+	<input type="hidden" type='submit' name="ajoutExModif" value="<?php echo $idmodif;?>">
+	<input type='submit' name="ajoutExModif2" value="Ajouter un exercice">
+	</form>

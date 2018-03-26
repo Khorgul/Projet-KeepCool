@@ -4,7 +4,7 @@ session_start();
 <?php
 $link=mysqli_connect("localhost","yoni","yoniphp1")or die("la connexion n'est pas passé");
 mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
-$sql="SELECT gm_id, gm_nom FROM `groupe_musculaire`";
+$sql="SELECT gm_id, gm_nom FROM `groupe_musculaire` ORDER BY gm_nom";
 $req=mysqli_query($link,$sql);
 ?>
 <p>Ajouter un exercice</p> 
@@ -105,7 +105,7 @@ if (isset($_POST['rep1'])) {
 			$seri = $_POST['rep'.$i];
 			$poids = $_POST['poids'.$i];
 			$sql = "INSERT INTO `serie` (`serie_id`,`serie_poids`,`serie_nb`,`serie_rang`, `exercice_id`)
-			VALUES (NULL, $seri, $poids, $i, $last_id);";
+			VALUES (NULL, $poids, $seri, $i, $last_id);";
 			$req=mysqli_query($link,$sql);
 		
 		}
