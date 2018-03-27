@@ -2,16 +2,15 @@
 session_start();
 ?>
 
+
+
 <?php
 	$link=mysqli_connect("localhost","yoni","yoniphp1")or die("la connexion n'est pas passé");
 	mysqli_select_db($link, "kcprojet")or die("la selection n'est pas passé");
 	$sql="SELECT * FROM adherent;";
 	$req=mysqli_query($link,$sql);
+?>
 	
-	
-	
-	
-	?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,9 +18,15 @@ session_start();
 		<link rel="stylesheet" href="style.css" />
         <title>KeepCool</title>
     </head>
+	
 
-    <body style ="margin-top : 10%; text-align: center; font-size : 18px;">
+
+    <body style ="margin-top : 0%; text-align: center; font-size : 18px;">
+	
     <header>
+		<?php
+			include("menu.html");
+		?>
 	</header>
 
 	Ajout d'un nouvel adhérent :</p>
@@ -44,8 +49,7 @@ session_start();
    </p>
    <input type="submit" name="ajout" value="Ajouter" onclick="if(!confirm('Etes-vous sur de vouloir ajouter cet enregistrement ?')) return false;">
 </form>
-
-
+</br>
 	
 	<p>Liste des adhérents</p>
 	<table style="margin:auto;" border ="1" height="100" width="400">

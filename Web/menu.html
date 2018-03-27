@@ -5,14 +5,18 @@
 
 ul {
     list-style-type: none;
-    margin: 0;
-    padding-left:40%;
+    margin: 1em 0 0 0 ;
+	margin-bottom:5%;
+    
 	overflow: hidden;
-    background-color: #333;
+    background-color:rgb(189,208,5) ;
+	//background-color:#333;
 }
 
 li {
-    float: left;
+display: inline-block;
+list-style: none;
+
     border-right:1px solid #bbb;
 }
 
@@ -29,19 +33,18 @@ li a {
 }
 
 li a:hover:not(.active) {
-    background-color: rgb(189,208,5);
+    background-color: rgb(225,5,108);
 }
-
 
 </style>
 </head>
 <body>
 
 <ul>
-  <li><a href="#home">Accueil</a></li>
-  <li><a href="#home">Playlist</a></li>
-  <li><a href="#news">Adherent</a></li>
-  <li><a href="#contact">Exercice</a></li>
+  <li><a href="Accueil.php">Accueil</a></li>
+  <li><a href="playlist.php">Playlist</a></li>
+  <li><a href="adherent.php">Adherent</a></li>
+  <li><a href="#">Exercice</a></li>
   
 </ul>
 

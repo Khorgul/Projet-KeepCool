@@ -10,7 +10,15 @@ $req=mysqli_query($link,$sql);
 	
 ?>
 <html>
-<body style ="margin-top : 10%; text-align: center; font-size : 18px;">
+
+
+<header>
+<?php
+			include("menu.html");
+		?>
+</header>
+
+<body style ="margin-top : 0%; text-align: center; font-size : 18px;">
 	<form name="adherent" method="post" action="playlist.php">
 		<label for="adherent">Adhérent : </label>
 			<select name ="adherent" id="adherent">
