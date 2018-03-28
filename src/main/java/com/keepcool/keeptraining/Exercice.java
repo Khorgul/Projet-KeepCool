@@ -9,11 +9,20 @@ public class Exercice {
     private int number;
     private Machine machine;
     private String nom;
+    private int chrono;
 
-    public Exercice(int number, Machine machine, String nom){
+    public Exercice(int number, Machine machine, String nom, int chrono){
         this.number=number;
         this.machine=machine;
         this.nom=nom;
+        this.chrono = chrono;
+    }
+
+    public Exercice(int number, Machine machine, int chrono){
+        this.number=number;
+        this.machine=machine;
+        this.nom=machine.getNom();
+        this.chrono = chrono;
     }
 
     public Machine getMachine() {
@@ -28,6 +37,10 @@ public class Exercice {
         return number;
     }
 
+    public int getChrono() {
+        return chrono;
+    }
+
     public void setMachine(Machine machine) {
         this.machine = machine;
     }
@@ -38,5 +51,9 @@ public class Exercice {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public void setChrono(int chrono) {
+        this.chrono = chrono;
     }
 }

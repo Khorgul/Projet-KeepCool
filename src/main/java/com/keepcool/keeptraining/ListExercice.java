@@ -12,6 +12,7 @@ public class ListExercice {
 
     public ListExercice() {
         list=new ArrayList<>();
+        build();
     }
 
     public Exercice get(int position) {
@@ -22,6 +23,9 @@ public class ListExercice {
         return list.size();
     }
 
-    public void build() {
+    private void build() {
+        Machine m = new Machine("nomMachine", R.drawable.ic_launcher_background);
+        list.add(new Exercice(1, m, "nomExercice", 90));
+        list.add(new Exercice(2, m, 90));
     }
 }

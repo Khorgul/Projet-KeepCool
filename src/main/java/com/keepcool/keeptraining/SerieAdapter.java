@@ -6,18 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by ff600900@iutnice.unice.fr on 23/03/18.
- */
-
-public class ExerciceAdapter extends BaseAdapter {
-
-    private ListExercice mListE;
+public class SerieAdapter extends BaseAdapter{
+    private ListSerie mListS;
 
     //Le contexte dans lequel est présent notre adapter
     private Context mContext;
@@ -26,18 +22,18 @@ public class ExerciceAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
 
-    public ExerciceAdapter(Context context, ListExercice aListE) {
+    public SerieAdapter(Context context, ListSerie aListS) {
         mContext = context;
-        mListE = aListE;
+        mListS = aListS;
         mInflater = LayoutInflater.from(mContext);
     }
 
     public int getCount() {
-        return mListE.size();
+        return mListS.size();
     }
 
     public Object getItem(int position) {
-        return mListE.get(position);
+        return mListS.get(position);
     }
 
     public long getItemId(int position) {
@@ -50,20 +46,20 @@ public class ExerciceAdapter extends BaseAdapter {
         //(1) : Réutilisation des layouts
         if (convertView == null) {
             //Initialisation de notre item à partir du  layout XML ""
-            layoutItem = (RelativeLayout) mInflater.inflate(R.layout.exercice_layout, parent, false);
+            layoutItem = (RelativeLayout) mInflater.inflate(R.layout.serie_layout, parent, false);
         } else {
             layoutItem = (RelativeLayout) convertView;
         }
 
         //(2) : Récupération des TextView de notre layout
-        TextView tvNom = (TextView) layoutItem.findViewById(R.id.NomExercice);
-        TextView tvChrono = (TextView) layoutItem.findViewById(R.id.Chrono);
-        ImageView image = (ImageView) layoutItem.findViewById(R.id.imgExercice);
+        TextView tvNom = (TextView) layoutItem.findViewById(R.id.SerieNom);
+        TextView tvCharge = (TextView) layoutItem.findViewById(R.id.SerieCharge);
+        TextView tvNb = (TextView) layoutItem.findViewById(R.id.SerieNb);
 
         //(3) : Renseignement des valeurs
-        tvNom.setText(mListE.get(position).getNom());
-        image.setImageResource(mListE.get(position).getMachine().getImage());
-        tvChrono.setText(String.valueOf(mListE.get(position).getChrono()));
+        tvNom.setText("Serie "+position);
+        tvCharge.setText(String.valueOf(mListS.get(position).getCharge()));
+        tvNb.setText(String.valueOf(mListS.get(position).getNb()));
 
         layoutItem.setTag(position);
 
@@ -72,7 +68,7 @@ public class ExerciceAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Integer position = (Integer)v.getTag();
-                sendListener(mListE.get(position), position);
+                sendListener(mListS.get(position), position);
 
             }
 
@@ -82,11 +78,11 @@ public class ExerciceAdapter extends BaseAdapter {
     }
 
     //abonnement pour click sur le nom...
-    private ArrayList<ExerciceAdapter.ExerciceAdapterListener> mListListener = new ArrayList<ExerciceAdapter.ExerciceAdapterListener>();
-    public void addListener(ExerciceAdapter.ExerciceAdapterListener aListener) {
+    private ArrayList<SerieAdapter.SerieAdapterListener> mListListener = new ArrayList<SerieAdapter.SerieAdapterListener>();
+    public void addListener(SerieAdapter.SerieAdapterListener aListener) {
         mListListener.add(aListener);
     }
-    private void sendListener(Exercice item, int position) {
+    private void sendListener(Serie item, int position) {
         for(int i = mListListener.size()-1; i >= 0; i--) {
             mListListener.get(i).onClickNom(item, position);
         }
@@ -95,9 +91,7 @@ public class ExerciceAdapter extends BaseAdapter {
 
     // Interface pour écouter les évènements sur le nom du diplome
 
-    public interface ExerciceAdapterListener {
-        public void onClickNom(Exercice item, int position);
+    public interface SerieAdapterListener {
+        public void onClickNom(Serie item, int position);
     }
-
-
 }
