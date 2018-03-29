@@ -4,10 +4,9 @@ Branche développement PHP / Web
 
 Fonctionnalitées :
 
-- Créer des playlists
-- Ajouter des exercices
-- Visualiser Playlist
+- Créer/Visualiser/Supprimer des playlists
 - Créer adhérents
+- Créer exercice
 
 Réalisé par Yoni Baroukh
 

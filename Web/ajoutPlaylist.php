@@ -122,4 +122,4 @@ if (isset($_POST['rep1'])) {
 		}
 
 ?>
-	<a href="playlist.php">Sortie</a>
+	<a href="playlist.php">Playlist terminée</a>

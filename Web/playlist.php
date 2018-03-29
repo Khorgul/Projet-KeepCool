@@ -70,7 +70,7 @@ while ($data=mysqli_fetch_assoc($req))
 		echo $nb;?></td>
 	<td align="center"><form action='voir.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/voir.png"></form>
 	<td align="center"><form action='modifPlaylist.php' method='post'><input type="hidden" type='submit' name="modif" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/modifier.jpg"></form>
-	<td align="center"><form action='supprimer.php' method='post'><input type="hidden" type='submit' name="visu" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/supprimer.jpg"></form>
+	<td align="center"><form action='supprimer.php' method='post'><input type="hidden" type='submit' name="supp" value="<?php echo $data['playlist_id']; ?>"><input type="image" src="../KeepCool/image/supprimer.jpg"></form>
 		
 	</tr>
 <?php

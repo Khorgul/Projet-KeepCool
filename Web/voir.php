@@ -9,7 +9,9 @@ $id=$_POST['visu'];
 
 ?>
 
-		
+	<?php
+			include("menu.html");
+		?>	
 	
 	<?php
 
@@ -40,7 +42,8 @@ if($ltab==0){
 $maxSerie = max($tab);
 
 ?>
-
+<html>
+<body style ="margin-top : 0%; text-align: center; font-size : 18px;">
 <table style ="margin : auto; margin-top:10%; font-size: 18px; " height ="150" width="550" border ="1">
 	<tr>
 		<td align="center" ROWSPAN=2>Exercice</td>
@@ -120,3 +123,5 @@ $reqDetail=mysqli_query($link,$detail);
 
 
 </table>
+</body>
+</html>
