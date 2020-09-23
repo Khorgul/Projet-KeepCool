@@ -2,9 +2,8 @@
 Florian Focas, Yoni Baroukh
 
 florianfocas@gmail.com
-yoni.baroukh@hotmail.com
 
-Le projet a pour but de développer une application Android, destinée à aider les utilisateurs à gérer leurs séances de sport.
+Le projet a pour but de dÃ©velopper une application Android, destinÃ©e Ã  aider les utilisateurs Ã  gÃ©rer leurs sÃ©ances de sport.
 
 Liens vers le NinjaMock :
 
